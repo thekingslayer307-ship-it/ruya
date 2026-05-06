@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruya — The Ruya Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="gallery-page">
+
+    <div class="gallery-header-bar">
+      <div class="gallery-brand">
+        <div class="gallery-brand-top">
+          <span class="gallery-icon">📖</span>
+          <span class="gallery-brand-name">The Ruya Gallery</span>
+        </div>
+        <p class="gallery-brand-sub">Where dreams, confessions, and whispered traces are captured in words.</p>
+      </div>
+      <a href="index.html"><button class="gallery-home-btn">Home</button></a>
+    </div>
+
+    <div class="gallery-meta-bar">
+      <span id="showing-text">Showing 1–3 of 9 issues</span>
+      <span id="page-text">Page 1 of 3</span>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid"></div>
+
+    <div class="pagination-wrap" id="pagination"></div>
+
+  </div>
+
+  <script>
+    const issues = [
+      {
+        title: "Midwinter Echoes",
+        date: "January 2025",
+        cat: "Prose",
+        desc: "A quiet collection of dream-worn reflections and candle-lit memories.",
+        seed: "ruya-i1"
+      },
+      {
+        title: "Tides of February",
+        date: "February 2025",
+        cat: "Ocean Symbolism",
+        desc: "Poems and pieces shaped by deep waters, constellations, and tender longing.",
+        seed: "ruya-i2"
+      },
+      {
+        title: "Hearts & Letters",
+        date: "March 2025",
+        cat: "Visual poetry",
+        desc: "Explorations of shadow, softness, and the fragile moments between day and night.",
+        seed: "ruya-i3"
+      },
+      {
+        title: "Blurred Silhouettes",
+        date: "April 2025",
+        cat: "Poetry",
+        desc: "A study of distance, identity, and the quiet spaces we inhabit.",
+        seed: "ruya-i4"
+      },
+      {
+        title: "Nocturne in Ink",
+        date: "May 2025",
+        cat: "Dark Academia",
+        desc: "Dark, minimal meditations written in the language of night.",
+        seed: "ruya-i5"
+      },
+      {
+        title: "Pastoral Fragments",
+        date: "June 2025",
+        cat: "Nostalgia & Memory",
+        desc: "A collage of memory, landscape, and the soft stories hidden in the countryside.",
+        seed: "ruya-i6"
+      },
+      {
+        title: "Rooms of Light",
+        date: "July 2025",
+        cat: "Feminine softness",
+        desc: "An intimate visual diary of stillness, femininity, and luminous spaces.",
+        seed: "ruya-i7"
+      },
+      {
+        title: "Ink & Reverie",
+        date: "August 2025",
+        cat: "Sketchbook visuals",
+        desc: "A swirling mix of sketches, handwritten thoughts, and restless imagination.",
+        seed: "ruya-i8"
+      },
+      {
+        title: "Letters from Another Summer",
+        date: "September 2025",
+        cat: "Vintage storytelling",
+        desc: "Vintage notes, sun-worn facades, and stories pressed into postcards.",
+        seed: "ruya-i9"
+      }
+    ];
+
+    const PER_PAGE = 3;
+    const TOTAL_PAGES = Math.ceil(issues.length / PER_PAGE);
+    let currentPage = 1;
+
+    function renderPage(page) {
+      currentPage = page;
+      const start = (page - 1) * PER_PAGE;
+      const end = start + PER_PAGE;
+      const slice = issues.slice(start, end);
+
+      document.getElementById('showing-text').textContent =
+        `Showing ${start + 1}–${Math.min(end, issues.length)} of ${issues.length} issues`;
+      document.getElementById('page-text').textContent =
+        `Page ${page} of ${TOTAL_PAGES}`;
+
+      document.getElementById('gallery-grid').innerHTML = slice.map(issue => `
+        <div class="issue-card">
+          <div class="issue-thumb">
+            <img src="https://picsum.photos/seed/${issue.seed}/400/200" alt="${issue.title}">
+          </div>
+          <div class="issue-body">
+            <div class="issue-title-row">
+              <span class="issue-title">${issue.title}</span>
+              <span class="issue-arrow">→</span>
+            </div>
+            <p class="issue-meta">${issue.date} &bull; ${issue.cat}</p>
+            <p class="issue-desc">${issue.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      renderPagination(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderPagination(page) {
+      let html = '';
+      if (page > 1) html += `<button class="pg-btn" onclick="renderPage(${page - 1})">&#8249;</button>`;
+      for (let i = 1; i <= TOTAL_PAGES; i++) {
+        html += `<button class="pg-btn${i === page ? ' active' : ''}" onclick="renderPage(${i})">${i}</button>`;
+      }
+      if (page < TOTAL_PAGES) html += `<button class="pg-btn" onclick="renderPage(${page + 1})">&#8250;</button>`;
+      document.getElementById('pagination').innerHTML = html;
+    }
+
+    renderPage(1);
+  </script>
+
+</body>
+</html>
