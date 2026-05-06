@@ -590,7 +590,18 @@ button { font-family: inherit; cursor: pointer; }
   transition: opacity .2s;
 }
 .promise-home-btn:hover { opacity: .82; }
-.promise-books { font-size: 54px; text-align: center; margin-bottom: 14px; line-height: 1; }
+.promise-sticker {
+  width: 140px;
+  margin-bottom: 20px;
+  transform: rotate(-3deg);
+  filter: drop-shadow(0 4px 12px rgba(73,17,28,.18));
+}
+.promise-sticker img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
 .promise-subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
