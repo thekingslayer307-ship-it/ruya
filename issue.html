@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruya — Issue</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .issue-page { background: var(--cream); min-height: 100vh; }
+    .issue-inner { max-width: 860px; margin: 0 auto; padding: 48px 32px 80px; }
+
+    .issue-back { margin-bottom: 32px; }
+
+    .issue-meta-tag {
+      display: inline-block;
+      border: 1px solid var(--burg);
+      color: var(--burg);
+      font-size: 12px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: .06em;
+    }
+    .issue-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--dark-text);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .issue-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      color: rgba(32,8,16,.55);
+      margin-bottom: 40px;
+    }
+
+    .issue-mockup {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: #2a1a14;
+      overflow: hidden;
+      margin-bottom: 40px;
+      border: 1px solid rgba(73,17,28,.12);
+    }
+    .issue-mockup img { width: 100%; height: 100%; object-fit: cover; }
+
+    .issue-desc-full {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      line-height: 1.85;
+      color: var(--dark-text);
+      text-align: justify;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+
+    .issue-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--burg);
+      margin: 0 auto 56px;
+      opacity: .5;
+    }
+
+    .issue-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(73,17,28,.2);
+      padding-top: 28px;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--burg);
+    }
+    .issue-nav a { color: var(--burg); transition: opacity .2s; }
+    .issue-nav a:hover { opacity: .65; }
+
+    @media (max-width: 768px) {
+      .issue-title { font-size: 32px; }
+      .issue-desc-full { font-size: 16px; }
+      .issue-inner { padding: 32px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-accent"></div>
+  <nav class="nav-light">
+    <a href="index.html" class="logo">ruya.</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="this.nextElementSibling.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="gallery.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+      <li><a href="promise.html">Our Promise</a></li>
+    </ul>
+  </nav>
+
+  <div class="issue-page">
+    <div class="issue-inner">
+
+      <div class="issue-back">
+        <a href="gallery.html" style="color:var(--burg); font-size:14px; letter-spacing:.06em; text-transform:uppercase;">← Back to Gallery</a>
+      </div>
+
+      <div id="issue-tag" class="issue-meta-tag"></div>
+      <h1 id="issue-title" class="issue-title"></h1>
+      <p id="issue-date" class="issue-date"></p>
+
+      <div class="issue-mockup">
+        <img id="issue-img" src="" alt="Issue mockup">
+      </div>
+
+      <p id="issue-desc" class="issue-desc-full"></p>
+
+      <div class="issue-divider"></div>
+
+      <div class="issue-nav">
+        <a id="prev-link" href="#">← Previous Issue</a>
+        <a href="gallery.html">All Issues</a>
+        <a id="next-link" href="#">Next Issue →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const issues = [
+      { title: "Midwinter Echoes", date: "January 2025", cat: "Prose", desc: "A quiet collection of dream-worn reflections and candle-lit memories. Each piece in this issue lingers in the space between sleep and waking — where thoughts are half-formed and feeling is everything.", seed: "ruya-i1" },
+      { title: "Tides of February", date: "February 2025", cat: "Ocean Symbolism", desc: "Poems and pieces shaped by deep waters, constellations, and tender longing. This issue dives below the surface, into the quiet pressure of things unspoken and the vast ache of open sea.", seed: "ruya-i2" },
+      { title: "Hearts & Letters", date: "March 2025", cat: "Visual poetry", desc: "Explorations of shadow, softness, and the fragile moments between day and night. A love letter to the in-between — to twilight, to almost-said, to the tenderness of ordinary things.", seed: "ruya-i3" },
+      { title: "Blurred Silhouettes", date: "April 2025", cat: "Poetry", desc: "A study of distance, identity, and the quiet spaces we inhabit. Who are we when no one is watching? This issue asks the questions we carry in the dark, and lets them breathe.", seed: "ruya-i4" },
+      { title: "Nocturne in Ink", date: "May 2025", cat: "Dark Academia", desc: "Dark, minimal meditations written in the language of night. Libraries after hours, ink-stained fingers, and the heavy beauty of knowledge sought in candlelight.", seed: "ruya-i5" },
+      { title: "Pastoral Fragments", date: "June 2025", cat: "Nostalgia & Memory", desc: "A collage of memory, landscape, and the soft stories hidden in the countryside. Fields, faded photographs, and the particular grief of places you cannot return to.", seed: "ruya-i6" },
+      { title: "Rooms of Light", date: "July 2025", cat: "Feminine softness", desc: "An intimate visual diary of stillness, femininity, and luminous spaces. Morning windows, white linen, and the sacred quiet of a room that holds you.", seed: "ruya-i7" },
+      { title: "Ink & Reverie", date: "August 2025", cat: "Sketchbook visuals", desc: "A swirling mix of sketches, handwritten thoughts, and restless imagination. Pages torn from the notebooks of dreamers who draw before they speak.", seed: "ruya-i8" },
+      { title: "Letters from Another Summer", date: "September 2025", cat: "Vintage storytelling", desc: "Vintage notes, sun-worn facades, and stories pressed into postcards. Letters never sent, summers that ended too soon, and the golden weight of what was.", seed: "ruya-i9" },
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id') || '1') - 1;
+    const issue = issues[Math.max(0, Math.min(id, issues.length - 1))];
+
+    document.title = `Ruya — ${issue.title}`;
+    document.getElementById('issue-tag').textContent = issue.cat;
+    document.getElementById('issue-title').textContent = issue.title;
+    document.getElementById('issue-date').textContent = issue.date;
+    document.getElementById('issue-desc').textContent = issue.desc;
+    document.getElementById('issue-img').src = `https://picsum.photos/seed/${issue.seed}/860/540`;
+
+    const prevId = id > 0 ? id : null;
+    const nextId = id < issues.length - 1 ? id + 2 : null;
+
+    const prevLink = document.getElementById('prev-link');
+    const nextLink = document.getElementById('next-link');
+    if (prevId) { prevLink.href = `issue.html?id=${prevId}`; }
+    else { prevLink.style.visibility = 'hidden'; }
+    if (nextId) { nextLink.href = `issue.html?id=${nextId}`; }
+    else { nextLink.style.visibility = 'hidden'; }
+  </script>
+
+</body>
+</html>

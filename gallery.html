@@ -114,20 +114,22 @@
       document.getElementById('page-text').textContent =
         `Page ${page} of ${TOTAL_PAGES}`;
 
-      document.getElementById('gallery-grid').innerHTML = slice.map(issue => `
-        <div class="issue-card">
-          <div class="issue-thumb">
-            <img src="https://picsum.photos/seed/${issue.seed}/400/200" alt="${issue.title}">
-          </div>
-          <div class="issue-body">
-            <div class="issue-title-row">
-              <span class="issue-title">${issue.title}</span>
-              <span class="issue-arrow">→</span>
+      document.getElementById('gallery-grid').innerHTML = slice.map((issue, i) => `
+        <a href="issue.html?id=${start + i + 1}" style="text-decoration:none;">
+          <div class="issue-card">
+            <div class="issue-thumb">
+              <img src="https://picsum.photos/seed/${issue.seed}/400/200" alt="${issue.title}">
             </div>
-            <p class="issue-meta">${issue.date} &bull; ${issue.cat}</p>
-            <p class="issue-desc">${issue.desc}</p>
+            <div class="issue-body">
+              <div class="issue-title-row">
+                <span class="issue-title">${issue.title}</span>
+                <span class="issue-arrow">→</span>
+              </div>
+              <p class="issue-meta">${issue.date} &bull; ${issue.cat}</p>
+              <p class="issue-desc">${issue.desc}</p>
+            </div>
           </div>
-        </div>
+        </a>
       `).join('');
 
       renderPagination(page);
