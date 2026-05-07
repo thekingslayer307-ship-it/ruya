@@ -64,6 +64,8 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 2px;
   transition: all .25s;
 }
+/* dark variant hidden by default, shown on mobile via media query */
+.nav-toggle-dark { display: none; }
 
 /* ─── DARK NAV ─── */
 .nav-dark {
@@ -668,13 +670,27 @@ button { font-family: inherit; cursor: pointer; }
   .nav-dark {
     padding: 14px 20px;
     flex-wrap: wrap;
-    gap: 12px;
+    position: relative;
   }
+  .nav-dark .logo { margin-right: auto; }
+  .nav-toggle-dark { display: flex; }
+  .nav-toggle-dark span { background: var(--text-on-dark); }
   .nav-dark ul {
-    gap: 16px;
-    flex-wrap: wrap;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    border-top: 1px solid rgba(245,237,213,.15);
+    margin-top: 10px;
+    padding: 8px 0 12px;
   }
-  .nav-dark ul a { font-size: 11px; letter-spacing: .08em; }
+  .nav-dark ul.open { display: flex; }
+  .nav-dark ul a {
+    display: block;
+    padding: 10px 4px;
+    font-size: 13px;
+    letter-spacing: .1em;
+  }
 
   /* Hero */
   .hero { height: 300px; }
